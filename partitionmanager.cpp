@@ -1493,7 +1493,7 @@ int TWPartitionManager::Decrypt_Device(string Password) {
 		if (!Mount_By_Path("/data", true)) // /data has to be mounted for FBE
 			return -1;
 		int retry_count = 10;
-		while (!TWFunc::Path_Exists("/data/system/users/gatekeeper.password.key") && --retry_count)
+		while (!TWFunc::Path_Exists("/data/system/gatekeeper.password.key") && --retry_count)
 			usleep(2000); // A small sleep is needed after mounting /data to ensure reliable decrypt... maybe because of DE?
 		int user_id = DataManager::GetIntValue("tw_decrypt_user_id");
 		LOGINFO("Decrypting FBE for user %i\n", user_id);
