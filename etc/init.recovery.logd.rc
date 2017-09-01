@@ -17,6 +17,8 @@ on property:vold.decrypt=trigger_load_persist_props
     start logd-reinit
 
 service logd /sbin/logd
+    export LD_LIBRARY_PATH=/sbin
+    disabled
     class core
     socket logd stream 0666 logd logd
     socket logdr seqpacket 0666 logd logd
@@ -25,6 +27,7 @@ service logd /sbin/logd
     seclabel u:r:logd:s0
 
 service logd-reinit /sbin/logd --reinit
+    export LD_LIBRARY_PATH=/sbin
     oneshot
     disabled
     seclabel u:r:logd:s0
